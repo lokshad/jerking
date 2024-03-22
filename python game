@@ -1,0 +1,38 @@
+import random
+
+def generate_number():
+    """Generates a random number between 1 and 100 (inclusive)."""
+    return random.randint(1, 100)
+
+def get_guess():
+    """Gets a valid guess from the user."""
+    while True:
+        try:
+            guess = int(input("Guess a number between 1 and 100: "))
+            if 1 <= guess <= 100:
+                return guess
+            else:
+                print("Invalid guess. Please enter a number between 1 and 100.")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+
+def play_game():
+    """Main game loop."""
+    secret_number = generate_number()
+    num_guesses = 0
+
+    while True:
+        guess = get_guess()
+        num_guesses += 1
+
+        if guess == secret_number:
+            print("You guessed it! The number was", secret_number, "in", num_guesses, "guesses.")
+            break
+        elif guess < secret_number:
+            print("Too low. Guess again.")
+        else:
+            print("Too high. Guess again.")
+
+if __name__ == "__main__":
+    print("Welcome to the Number Guessing Game!")
+    play_game()
